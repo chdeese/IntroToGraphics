@@ -6,6 +6,8 @@
 #include "VertexArray.h"
 #include "VertexBufferLayout.h"
 #include "Shader.h"
+#include "vendor/stb_image.h"
+#include "Texture.h"
 
 
 #include <iostream>
@@ -49,19 +51,25 @@ int main(void)
     glDebugMessageCallback(GLDebugCallback, nullptr);
 
     {
-        float positions[8] =
-        { -0.5f, -0.5f, //0
-           0.5f, -0.5f, //1
-           0.5f, 0.5f, //2
-           -0.5f, 0.5f };//3
+        float positions[16] =
+                //coords      //text cords
+        { /*0*/-0.5f, -0.5f,   0.0f, 0.0f,
+          /*1*/0.5f, -0.5f,    1.0f, 0.0f,
+          /*2*/0.5f, 0.5f,     1.0f, 1.0f, 
+          /*3*/-0.5f, 0.5f,    0.0f, 1.0f };
 
         unsigned int indices[] = { 0, 1, 2,
                                    2, 3, 0 };
 
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND);
+
         VertexArray va = VertexArray();
-        VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+        //(was 4*2 before texture)
+        VertexBuffer vb(positions, 4 * 4 * sizeof(float));
 
         VertexBufferLayout layout;
+        layout.push<float>(2);
         layout.push<float>(2);
         va.addBuffer(vb, layout);
 
@@ -69,7 +77,10 @@ int main(void)
 
         Shader shader("res/shaders/Basic.shader");
         shader.bind();
-        shader.setUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+        shader.setUniform4f("u_color", 0.8f, 0.3f, 0.8f, 1.0f);
+
+        Texture texture("res/textures/fish.jpg");
+        texture.bind();
 
         va.unbind(); vb.unbind(); ib.unbind(); shader.unbind();
  
@@ -84,7 +95,7 @@ int main(void)
             renderer.clear();
             
             shader.bind();
-            shader.setUniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
+            shader.setUniform4f("u_color", r, 0.3f, 0.8f, 1.0f);
 
             renderer.draw(va, ib, shader);
 
