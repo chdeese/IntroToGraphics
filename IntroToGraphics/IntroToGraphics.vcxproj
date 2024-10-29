@@ -23,6 +23,8 @@
     <ClCompile Include="src\IndexBuffer.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Shader.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\vendor\stb_image.cpp" />
     <ClCompile Include="src\VertexArray.cpp" />
     <ClCompile Include="src\VertexBuffer.cpp" />
   </ItemGroup>
@@ -33,6 +35,8 @@
     <ClInclude Include="src\IndexBuffer.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Shader.h" />
+    <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\vendor\stb_image.h" />
     <ClInclude Include="src\VertexArray.h" />
     <ClInclude Include="src\VertexBuffer.h" />
     <ClInclude Include="src\VertexBufferLayout.h" />
@@ -95,7 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC; WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor/GLEW/include; $(SolutionDir)vendor/GLFW/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src/vendor; $(SolutionDir)vendor/GLEW/include; $(SolutionDir)vendor/GLFW/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,6 +107,9 @@
       <AdditionalDependencies>glew32s.lib; glfw3.lib; opengl32.lib; User32.lib; Gdi32.lib; Shell32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)vendor/GLEW/lib; $(SolutionDir)vendor/GLFW/lib;</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY $(ProjectDir)res $(OutputPath)res /Q /E /Y /I</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -112,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC; WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor/GLEW/include; $(SolutionDir)vendor/GLFW/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src/vendor; $(SolutionDir)vendor/GLEW/include; $(SolutionDir)vendor/GLFW/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,6 +129,9 @@
       <AdditionalDependencies>glew32s.lib; glfw3.lib; opengl32.lib; User32.lib; Gdi32.lib; Shell32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)vendor/GLEW/lib; $(SolutionDir)vendor/GLFW/lib;</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY $(ProjectDir)res $(OutputPath)res /Q /E /Y /I</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -129,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC; _DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor/GLEW/include; $(SolutionDir)vendor/GLFW/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src/vendor; $(SolutionDir)vendor/GLEW/include; $(SolutionDir)vendor/GLFW/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,6 +147,9 @@
       <AdditionalDependencies>glew32s.lib; glfw3.lib; opengl32.lib; User32.lib; Gdi32.lib; Shell32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)vendor/GLEW/lib; $(SolutionDir)vendor/GLFW/lib;</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY $(ProjectDir)res $(OutputPath)res /Q /E /Y /I</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -146,7 +159,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC; NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor/GLEW/include; $(SolutionDir)vendor/GLFW/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src/vendor; $(SolutionDir)vendor/GLEW/include; $(SolutionDir)vendor/GLFW/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,6 +169,9 @@
       <AdditionalDependencies>glew32s.lib; glfw3.lib; opengl32.lib; User32.lib; Gdi32.lib; Shell32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)vendor/GLEW/lib; $(SolutionDir)vendor/GLFW/lib;</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY $(ProjectDir)res $(OutputPath)res /Q /E /Y /I</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
