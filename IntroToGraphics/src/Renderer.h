@@ -2,6 +2,10 @@
 
 #include <GL/glew.h>
 
+class VertexArray;
+class IndexBuffer;
+class Shader;
+
 void GLFWErrorCallback(int error, const char* description);
 void GLDebugCallback(
     GLenum source,
@@ -12,3 +16,10 @@ void GLDebugCallback(
     const GLchar* message,
     const void* userParam
     );
+
+class Renderer
+{
+public:
+    void draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
+    void clear() const;
+};
