@@ -1,12 +1,14 @@
 #include "VertexBuffer.h"
-#include "GLFW/glfw3.h"
 #include "GL/glew.h"
+#include "GLFW/glfw3.h"
 
-VertexBuffer::VertexBuffer(const void* data, unsigned int count)
+
+VertexBuffer::VertexBuffer(const void* data, unsigned int size)
 {
     glGenBuffers(1, &m_RendererID);
     glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
-    glBufferData(GL_ARRAY_BUFFER, count * sizeof(GLuint), data, GL_STATIC_DRAW);
+
+    glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 
 }
 VertexBuffer::~VertexBuffer()
