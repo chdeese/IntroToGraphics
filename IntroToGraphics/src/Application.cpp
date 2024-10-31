@@ -61,8 +61,8 @@ int main(void)
         unsigned int indices[] = { 0, 1, 2,
                                    2, 3, 0 };
 
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         VertexArray va = VertexArray();
         //(was 4*2 before texture)
@@ -81,6 +81,7 @@ int main(void)
 
         Texture texture("res/textures/fish.jpg");
         texture.bind();
+        shader.setUniform1i("u_texture", 0);
 
         va.unbind(); vb.unbind(); ib.unbind(); shader.unbind();
  
@@ -92,6 +93,7 @@ int main(void)
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
+            //glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             renderer.clear();
             
             shader.bind();
