@@ -7,11 +7,13 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
 
+//displays glfw error
 void GLFWErrorCallback(int error, const char* description)
 {
     std::cerr << description << "\n";
 }
 
+//displays OpenGL error or debugbreak
 void GLDebugCallback(
     GLenum source,
     GLenum type,
@@ -28,6 +30,7 @@ void GLDebugCallback(
         __debugbreak();
 }
 
+//starts drawing from shader, vertex array, and index buffer
 void Renderer::draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const
 {
     shader.bind();
@@ -37,6 +40,7 @@ void Renderer::draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     glDrawElements(GL_TRIANGLES, ib.getCount(), GL_UNSIGNED_INT, nullptr);
 }
 
+//clears the screen
 void Renderer::clear() const
 {
     glClear(GL_COLOR_BUFFER_BIT);

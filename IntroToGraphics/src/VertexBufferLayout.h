@@ -32,6 +32,10 @@ private:
 public:
 	VertexBufferLayout() : m_stride(0) {}
 
+
+
+	//push() functions push values and data about those values into a layout for our vertex buffer
+	//if no type is passed in, debug break.
 	template<typename T>
 	void push(unsigned int count)
 	{
@@ -57,6 +61,7 @@ public:
 	}
 
 	inline const std::vector<VertexBufferElement>& getElements() const { return m_elements; }
+	//amount of bits between vertexes in our vertex buffer.
 	inline unsigned int getStride() const { return m_stride; }
 };
 
